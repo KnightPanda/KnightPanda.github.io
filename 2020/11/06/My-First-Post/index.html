@@ -6,15 +6,15 @@
   <meta name="keywords" content=" HELLO WORLD ">
   <meta name="description" content="My First Post | 不木的番茄">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="#include&lt;bits&#x2F;stdc++.h&gt; using namespace std; int main() &amp;#123; printf(&quot;HELLO WORLD&quot;);  &amp;#125; print(&quot;HELLO WORLD&quot;)">
+<meta name="description" content="#include&lt;bits&#x2F;stdc++.h&gt; using namespace std; int main() &amp;#123; printf(&quot;HELLO WORLD&quot;);  &amp;#125; print(&quot;HELLO WORLD&quot;) DELIMITER &#x2F;&#x2F; CREATE PROCEDURE productpricing(     out pl DE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="My First Post">
 <meta property="og:url" content="https://knightpanda.github.io/2020/11/06/My-First-Post/index.html">
 <meta property="og:site_name" content="不木的番茄">
-<meta property="og:description" content="#include&lt;bits&#x2F;stdc++.h&gt; using namespace std; int main() &amp;#123; printf(&quot;HELLO WORLD&quot;);  &amp;#125; print(&quot;HELLO WORLD&quot;)">
+<meta property="og:description" content="#include&lt;bits&#x2F;stdc++.h&gt; using namespace std; int main() &amp;#123; printf(&quot;HELLO WORLD&quot;);  &amp;#125; print(&quot;HELLO WORLD&quot;) DELIMITER &#x2F;&#x2F; CREATE PROCEDURE productpricing(     out pl DE">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-06T13:57:36.538Z">
-<meta property="article:modified_time" content="2020-11-07T07:21:13.095Z">
+<meta property="article:modified_time" content="2020-11-07T08:50:20.401Z">
 <meta property="article:author" content="不木的番茄">
 <meta property="article:tag" content="HELLO WORLD">
 <meta name="twitter:card" content="summary">
@@ -267,7 +267,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-07 15:21:13'>2020-11-06 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2020-11-07 16:50:20'>2020-11-06 21:57</time>
         
     </div>
     <div class="article-meta">
@@ -313,6 +313,26 @@ printf(&quot;HELLO WORLD&quot;);
 
 &#125;</code></pre>
 <pre><code class="python">print(&quot;HELLO WORLD&quot;)</code></pre>
+<pre><code class="mysql">DELIMITER //
+CREATE PROCEDURE productpricing(
+    out pl DECIMAL(8,2),
+    out ph DECIMAL(8,2),
+    out pa DECIMAL(8,2)
+)
+BEGIN
+    SELECT Min(prod_price)
+    INTO pl
+    FROM products;
+    SELECT Max(prod_price)
+    INTO ph
+    FROM products;
+    SELECT Avg(prod_price)
+    INTO pa
+    FROM products;
+END //
+DELIMITER ;
+
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至xuwenkai13@gmail.com </span>
