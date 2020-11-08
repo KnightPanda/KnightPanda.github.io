@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My First Post | 不木的番茄</title>
-  <meta name="keywords" content=" HELLO WORLD ">
-  <meta name="description" content="My First Post | 不木的番茄">
+  <title>MySQL使用触发器 | 不木的番茄</title>
+  <meta name="keywords" content=" MySQL ">
+  <meta name="description" content="MySQL使用触发器 | 不木的番茄">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="MySQL 使用游标需要在检索出来的行中前进或者后退一行或者多行，就是使用游标的原因 游标cursor是一个存储在MySQL服务器上的数据库查询，他不是一条SELECT语句，而是被该语句检索出来的结果集 不同于大多数DBMS，MySQL游标只能用于存储过程（和函数）。 创建游标存储过程处理完成后，游标就消失了（局限于存储过程） 打开和关闭游标 隐含关闭，如果你不明确关闭游标，MySQL将在到达EN">
 <meta property="og:type" content="article">
@@ -268,9 +268,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-My-First-Post" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-mysql" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">My First Post</h1>
+        <h1 class="article-title">MySQL使用触发器</h1>
     
     <div class="article-meta">
         
@@ -280,7 +280,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="杂">杂</a>
+            <a  data-rel="数据库">数据库</a>
             
         </span>
         
@@ -288,14 +288,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">HELLO WORLD</a>
+            <a class="color1">MySQL</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-07 16:50:20'>2020-11-06 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2020-11-08 23:55:05'>2020-11-08 23:52</time>
         
     </div>
     <div class="article-meta">
@@ -317,7 +317,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E4%BD%BF%E7%94%A8%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-text">MySQL使用触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-text">创建触发器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%A0%E9%99%A4%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-text">删除触发器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-text">使用触发器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-INSERT%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-text">1.INSERT触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-DELETE%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-text">2.DELETE触发器</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-UPDATE%E8%A7%A6%E5%8F%91%E5%99%A8"><span class="toc-text">3.UPDATE触发器</span></a></li></ol></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -333,34 +333,65 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code class="C++">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-&#123;
-printf(&quot;HELLO WORLD&quot;);
-
-&#125;</code></pre>
-<pre><code class="python">print(&quot;HELLO WORLD&quot;)</code></pre>
-<pre><code class="mysql">DELIMITER //
-CREATE PROCEDURE productpricing(
-    out pl DECIMAL(8,2),
-    out ph DECIMAL(8,2),
-    out pa DECIMAL(8,2)
-)
+        <h1 id="MySQL使用触发器"><a href="#MySQL使用触发器" class="headerlink" title="MySQL使用触发器"></a>MySQL使用触发器</h1><p><strong>触发器</strong>是MySQL响应以下任意语句而自动执行的一条MySQL语句（或是位于BEGIN和END之间的一组语句）</p>
+<ul>
+<li>DELETE </li>
+<li>INSERT</li>
+<li>UPDATE</li>
+</ul>
+<p>(其他的MySQL语句不支持触发器)</p>
+<h2 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h2><p>需要以下四条信息</p>
+<ul>
+<li>唯一的触发器名</li>
+<li>触发器关联的表</li>
+<li>触发器响应的活动</li>
+<li>触发器何时执行（处理之前，处理之后）</li>
+</ul>
+<p>触发器名必须在每个表是唯一的</p>
+<pre><code class="mysql">CREATE TRIGGER newproduct AFTER INSERT ON products
+FOR EACH ROW SELECT &#39;product added&#39;;</code></pre>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36162966/article/details/90025204">触发器创建失败的解决方法</a></p>
+<p>从MySQL5以后不支持触发器返回结果集，需要用一个变量接收结果集输出。改为以下</p>
+<pre><code class="mysql">CREATE TRIGGER newproduct AFTER INSERT ON products
+FOR EACH ROW SELECT &#39;product added&#39; INTO @p;</code></pre>
+<p><code>CREATE TRIGGER</code>创建一个名为<code>newproduct</code>的新的触发器，触发器将在<code>insert</code>成功执行后执行，</p>
+<p><em>触发器仅支持表，不支持视图，临时表</em></p>
+<p><em>每个表每个事件每次只允许一个触发器，所以每个表最多支持6个触发器（INSERT,DECLARE,DELETE前后）</em></p>
+<h2 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h2><pre><code class="mysql">DROP TRIGGER newproduct;</code></pre>
+<p><em>触发器不能更新或者覆盖，为了修改一个触发器，必须先删除它，然后重新创建</em></p>
+<h2 id="使用触发器"><a href="#使用触发器" class="headerlink" title="使用触发器"></a>使用触发器</h2><h3 id="1-INSERT触发器"><a href="#1-INSERT触发器" class="headerlink" title="1.INSERT触发器"></a>1.INSERT触发器</h3><ul>
+<li>在INSERT触发器代码内可引用一个名为NEW的寻你表，访问被插入的行</li>
+</ul>
+<pre><code class="mySQL">CREATE TRIGGER neworder AFTER INSERT ON orders
+FOR EACH ROW SELECT NEW.order_num INTO @test_1;</code></pre>
+<p>在插入一个新订单号到orders表时，MySQL生成一个新订单号并保存在order_num中。触发器从NEW.order_num取得这个值并返回他。触发器每次总时返回新订单号。</p>
+<p>测试触发器 </p>
+<pre><code class="mySQL">INSERT INTO orders(order_date,cust_id)
+VALUES(NOW(),10001)</code></pre>
+<blockquote>
+<p>分析:orders包含3列，order_date,cust_id必须给出，order_num由MySQL自动生成</p>
+</blockquote>
+<h3 id="2-DELETE触发器"><a href="#2-DELETE触发器" class="headerlink" title="2.DELETE触发器"></a>2.DELETE触发器</h3><ul>
+<li>在DELETE触发器代码内，可以引用一个名为OLD的寻你表，访问被删除的行</li>
+<li>OLD的值全部为只读，不能更新</li>
+</ul>
+<pre><code class="mySQL"> DELIMITER //
+CREATE TRIGGER deleteorder BEFORE DELETE ON orders
+FOR EACH ROW
 BEGIN
-    SELECT Min(prod_price)
-    INTO pl
-    FROM products;
-    SELECT Max(prod_price)
-    INTO ph
-    FROM products;
-    SELECT Avg(prod_price)
-    INTO pa
-    FROM products;
-END //
-DELIMITER ;
-
-</code></pre>
+    INSERT INTO archive_orders(order_name,order_date,cust_id)
+    VALUES(OLD.order_num,OLD.order_date,OLD.cust_id);
+END//</code></pre>
+<p>在任意订单被删除前执行此触发器，使用INSERT语句将OLD中的值保存在一个存档表中</p>
+<p><em>使用BEFORE DELETE触发器的优点（相对AFTER DELETE触发器）如果由于某些原因，订单不能存档，DELETE本身将被放弃</em></p>
+<h3 id="3-UPDATE触发器"><a href="#3-UPDATE触发器" class="headerlink" title="3.UPDATE触发器"></a>3.UPDATE触发器</h3><ul>
+<li>在UPDATE触发器代码中，可以引用一个名为OLD的虚拟表访问以前的值，引用一个名为NEW的虚拟表访问更新的值</li>
+<li>在BEFORE UPDATE触发器中，NEW的值也可能被更新（允许更改将要用于UPDATE语句的值）</li>
+<li>OLD值为可读，不能更改</li>
+</ul>
+<p>保证州名缩写总是大写</p>
+<pre><code class="mySQL">create trigger updatevendor before update on vendors
+for each row set NEW.vend_state =Upper(NEW.vend_state);</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至xuwenkai13@gmail.com </span>

@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My First Post | 不木的番茄</title>
-  <meta name="keywords" content=" HELLO WORLD ">
-  <meta name="description" content="My First Post | 不木的番茄">
+  <title>MySQL 使用游标 | 不木的番茄</title>
+  <meta name="keywords" content=" MySQL ">
+  <meta name="description" content="MySQL 使用游标 | 不木的番茄">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="MySQL 使用游标需要在检索出来的行中前进或者后退一行或者多行，就是使用游标的原因 游标cursor是一个存储在MySQL服务器上的数据库查询，他不是一条SELECT语句，而是被该语句检索出来的结果集 不同于大多数DBMS，MySQL游标只能用于存储过程（和函数）。 创建游标存储过程处理完成后，游标就消失了（局限于存储过程） 打开和关闭游标 隐含关闭，如果你不明确关闭游标，MySQL将在到达EN">
 <meta property="og:type" content="article">
@@ -268,9 +268,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-My-First-Post" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-mysql1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">My First Post</h1>
+        <h1 class="article-title">MySQL 使用游标</h1>
     
     <div class="article-meta">
         
@@ -280,7 +280,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="杂">杂</a>
+            <a  data-rel="数据库">数据库</a>
             
         </span>
         
@@ -288,14 +288,14 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">HELLO WORLD</a>
+            <a class="color1">MySQL</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-07 16:50:20'>2020-11-06 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2020-11-08 23:55:12'>2020-11-08 23:54</time>
         
     </div>
     <div class="article-meta">
@@ -317,7 +317,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-%E4%BD%BF%E7%94%A8%E6%B8%B8%E6%A0%87"><span class="toc-text">MySQL 使用游标</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E6%B8%B8%E6%A0%87"><span class="toc-text">创建游标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%93%E5%BC%80%E5%92%8C%E5%85%B3%E9%97%AD%E6%B8%B8%E6%A0%87"><span class="toc-text">打开和关闭游标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%B8%B8%E6%A0%87%E6%95%B0%E6%8D%AE"><span class="toc-text">使用游标数据</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -333,34 +333,66 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code class="C++">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-&#123;
-printf(&quot;HELLO WORLD&quot;);
-
-&#125;</code></pre>
-<pre><code class="python">print(&quot;HELLO WORLD&quot;)</code></pre>
-<pre><code class="mysql">DELIMITER //
-CREATE PROCEDURE productpricing(
-    out pl DECIMAL(8,2),
-    out ph DECIMAL(8,2),
-    out pa DECIMAL(8,2)
-)
+        <h1 id="MySQL-使用游标"><a href="#MySQL-使用游标" class="headerlink" title="MySQL 使用游标"></a>MySQL 使用游标</h1><p>需要在检索出来的行中前进或者后退一行或者多行，就是使用游标的原因</p>
+<p>游标<code>cursor</code>是一个存储在MySQL服务器上的数据库查询，他不是一条SELECT语句，而是被该语句检索出来的结果集</p>
+<p>不同于大多数DBMS，MySQL游标只能用于存储过程（和函数）。</p>
+<h2 id="创建游标"><a href="#创建游标" class="headerlink" title="创建游标"></a>创建游标</h2><p>存储过程处理完成后，游标就消失了（局限于存储过程）</p>
+<h2 id="打开和关闭游标"><a href="#打开和关闭游标" class="headerlink" title="打开和关闭游标"></a>打开和关闭游标</h2><blockquote>
+<p>隐含关闭，如果你不明确关闭游标，MySQL将在到达END语句时自动关闭它</p>
+</blockquote>
+<pre><code class="mySQL">DELIMITER //
+CREATE PROCEDURE processorders()
 BEGIN
-    SELECT Min(prod_price)
-    INTO pl
-    FROM products;
-    SELECT Max(prod_price)
-    INTO ph
-    FROM products;
-    SELECT Avg(prod_price)
-    INTO pa
-    FROM products;
-END //
-DELIMITER ;
+    declare o int;
+    DECLARE ordernumbers CURSOR
+    FOR
+    SELECT order_num FROM orders;
+    OPEN ordernumbers;
+    fetch ordernumbers into o;
+    CLOSE ordernumbers;
+END;//</code></pre>
+<p>这个存储过程声明，打开和关闭一个游标，但对于检索出来的数据什么也没做</p>
+<h2 id="使用游标数据"><a href="#使用游标数据" class="headerlink" title="使用游标数据"></a>使用游标数据</h2><p>在一个游标被打开后可以使用FETCH语句分别访问它的每一行。</p>
+<pre><code class="mySQL">DROP PROCEDURE  processorders;
 
-</code></pre>
+DELIMITER //
+CREATE PROCEDURE processorders()
+BEGIN
+    DECLARE done BOOLEAN DEFAULT 0;
+    DECLARE o INT;
+    DECLARE t DECIMAL(8,2);
+    DECLARE ordernumbers CURSOR 
+    FOR 
+    SELECT order_num FROM orders;
+    DECLARE CONTINUE HANDLER FOR SQLSTATE &#39;02000&#39; SET done=1;
+    CREATE TABLE IF NOT EXISTS ordertotals
+    (order_num INT,total DECIMAL(8,2));
+
+    open ordernumbers;
+    REPEAT
+        FETCH ordernumbers into o;
+        CALL ordertotal(o,1,t);
+        INSERT INTO ordertotals(order_num,total)
+        VALUES(o,t);
+        UNTIL done END REPEAT ;
+        CLOSE ordernumbers;
+    END;//    
+
+CALL processorders;
+
+select * 
+from ordertotals;</code></pre>
+<p><code>FETCH</code>检索当前<code>order_num</code>到声明名为o的变量中，由于<code>FETCH</code>是在<code>REPEAT</code>中，因此反复执行至<code>done</code>为真    </p>
+<p><code>DEFAULT 0</code>定义变量<code>done</code>假</p>
+<p><code>DECLARE CONTINUE HANDLER FOR SQLSTATE &#39;02000&#39; SET done=1;</code></p>
+<ul>
+<li><code>CONTINUE HANDLER</code>在条件出现执行这行代码</li>
+<li><code>SQLSTATE &#39;02000&#39;</code>未找到条件</li>
+</ul>
+<p><code>t</code>表示每个订单的合计</p>
+<p>在存储过程追踪创建一个新表用于存储结果</p>
+<p>具体描述如下：</p>
+<p><code>FETCH</code>像以前一样取每个<code>order_num</code>，然后<code>CALL</code>执行另一个存储过程计算每个订单的带税合计，最后保存每个订单的订单号和合计</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至xuwenkai13@gmail.com </span>
