@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>My First Post | 不木的番茄</title>
-  <meta name="keywords" content=" HELLO WORLD ">
-  <meta name="description" content="My First Post | 不木的番茄">
+  <title>MySQL本地化全球化 | 不木的番茄</title>
+  <meta name="keywords" content=" MySQL ">
+  <meta name="description" content="MySQL本地化全球化 | 不木的番茄">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="MySQL附录整理（语句与数据类型，保留字）MySQL语句 ALTER TABLE  更新已存在的表的模式 COMMIT将事务处理写到数据表 CREATE INDEX用于在一个或多个列上创建索引 CREATE PROCEDURE创建存储过程 CREATE TABLE创建新数据表库 CREATE USER添加新的用户账号 CREATE VIEW创建一个或多个 表上的新视图 DELETE从 表中删除一">
 <meta property="og:type" content="article">
@@ -316,9 +316,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-My-First-Post" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-mysql3" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">My First Post</h1>
+        <h1 class="article-title">MySQL本地化全球化</h1>
     
     <div class="article-meta">
         
@@ -328,7 +328,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="杂">杂</a>
+            <a  data-rel="数据库">数据库</a>
             
         </span>
         
@@ -336,19 +336,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color2">HELLO WORLD</a>
+            <a class="color1">MySQL</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-07 16:50:20'>2020-11-06 21:57</time>
+            发布时间 : <time class="date" title='最后更新: 2020-11-09 23:42:44'>2020-11-09 23:42</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:66</span>
+        <span>字数:637</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -367,7 +367,7 @@
     
     <div class="toc-ref">
     
-        
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL%E6%9C%AC%E5%9C%B0%E5%8C%96%E5%85%A8%E7%90%83%E5%8C%96"><span class="toc-text">MySQL本地化全球化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E6%A0%A1%E5%AF%B9%E9%A1%BA%E5%BA%8F"><span class="toc-text">字符集和校对顺序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E5%AD%97%E7%AC%A6%E9%9B%86%E5%92%8C%E6%A0%A1%E5%AF%B9%E9%A1%BA%E5%BA%8F"><span class="toc-text">使用字符集和校对顺序</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -383,34 +383,51 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <pre><code class="C++">#include&lt;bits/stdc++.h&gt;
-using namespace std;
-int main()
-&#123;
-printf(&quot;HELLO WORLD&quot;);
-
-&#125;</code></pre>
-<pre><code class="python">print(&quot;HELLO WORLD&quot;)</code></pre>
-<pre><code class="mysql">DELIMITER //
-CREATE PROCEDURE productpricing(
-    out pl DECIMAL(8,2),
-    out ph DECIMAL(8,2),
-    out pa DECIMAL(8,2)
-)
-BEGIN
-    SELECT Min(prod_price)
-    INTO pl
-    FROM products;
-    SELECT Max(prod_price)
-    INTO ph
-    FROM products;
-    SELECT Avg(prod_price)
-    INTO pa
-    FROM products;
-END //
-DELIMITER ;
-
-</code></pre>
+        <h1 id="MySQL本地化全球化"><a href="#MySQL本地化全球化" class="headerlink" title="MySQL本地化全球化"></a>MySQL本地化全球化</h1><blockquote>
+<p>介绍MySQL处理不同字符集和语言的基础知识</p>
+</blockquote>
+<h2 id="字符集和校对顺序"><a href="#字符集和校对顺序" class="headerlink" title="字符集和校对顺序"></a>字符集和校对顺序</h2><p>数据库表被用来存储和检索数据。<strong>不同的语言和字符集需要以不同的方式存储和检索</strong>。因此，MySQL需要适应不同的字符集（不同的字母 和字符），适应不同的排序和检索数据的方法</p>
+<ul>
+<li>字符集 ： 字母和符号的集合</li>
+<li>编码 ：某个字符集成员的内部表示</li>
+<li>校对 ：规定字符如何比较的指令</li>
+</ul>
+<p>在MySQL的正常数据库活动（SELECT、INSERT等）中，不需要操心太多的东西。使用何种字符集和校对的决定在服务器、数据库和表级进行。</p>
+<h2 id="使用字符集和校对顺序"><a href="#使用字符集和校对顺序" class="headerlink" title="使用字符集和校对顺序"></a>使用字符集和校对顺序</h2><p>显示所有可用的字符集以及每个字符集的描述和默认校对</p>
+<pre><code class="mysql">SHOW CHARACTER SET;</code></pre>
+<p>查看所支持校对的完整列表</p>
+<pre><code class="mysql"> SHOW COLLATION;</code></pre>
+<p>通常系统管理在安装时定义一个默认的字符集和校对。此外，也可以在创建数据库时，指定默认的字符集和校对。为了确定所用的字符集 和校对，可以使用以下语句：</p>
+<pre><code class="mysql">SHOW VARIABLES LIKE &#39;character%&#39;;
+SHOW VARIABLES LIKE &#39;collation%&#39;;</code></pre>
+<p>实际上，字符集很少是服务器范围（甚至数据库范围）的设置。不同的表，甚至不同的列都可能需要不同的字符集，而且两者都 可以在创建表时指定。指定字符集和校对</p>
+<pre><code class="mysql">CREATE TABLE mytable
+(
+    column1 INT,
+    column2 VARCHAR(10)
+)DEFAULT CHARACTER SET hebrew
+COLLATE hebrew_general_ci;</code></pre>
+<ul>
+<li><p>如果指定CHARACTER SET和COLLATE两者，则使用这些值。</p>
+</li>
+<li><p>如果只指定CHARACTER SET，则使用此字符集及其默认的校对（如 SHOW CHARACTER SET的结果中所示）。</p>
+</li>
+<li><p>如果既不指定CHARACTER SET，也不指定COLLATE，则使用数据库 默认。</p>
+</li>
+</ul>
+<p>除了能指定字符集和校对的表范围外，MySQL还允许对每个列设置它们</p>
+<pre><code class="mysql">CREATE TABLE mytable
+(
+    column1 INT,
+    column2 VARCHAR(10),
+    column3 VARCHAR(10) CHARACTER  SET latin1 COLLATE
+    latin1_general_ci
+)DEFAULT CHARACTER SET hebrew
+COLLATE hebrew_general_ci;</code></pre>
+<p>如前所述，校对在对用ORDER BY子句检索出来的数据排序时起重要的作用。如果你需要用与创建表时不同的校对顺序排序特定的SELECT语 句，可以在SELECT语句自身中进行</p>
+<pre><code class="mysql">SELECT * FROM customers
+ORDER BY cust_name COLLATE latin1_general_cs;</code></pre>
+<p>上面的SELECT语句演示了在通常不区分大 小写的表上进行区分大小写搜索的一种技术 <strong>临时区分大小写</strong></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至xuwenkai13@gmail.com </span>
