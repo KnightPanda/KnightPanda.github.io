@@ -6,24 +6,18 @@
   <meta name="keywords" content=" MySQL ">
   <meta name="description" content="MySQL 数据库维护 | 不木的番茄">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<meta name="description" content="经典同步问题1.生产者-消费者问题 问题描述：   问题分析： 1）关系分析：生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互写作的关系，只有生产者生产之后，消费者才能消费，它们是同步关系 2）整理思路： 解决的是互斥和同步的PV操作 3） 信号量设置： 信号量mutex作为互斥信号量，用于控制互斥访问缓冲池，互斥信号量初始为1 ；信号量full用于记录当前缓冲池中满缓冲区">
+<meta name="description" content="MySQL附录整理（语句与数据类型，保留字）MySQL语句 ALTER TABLE  更新已存在的表的模式 COMMIT将事务处理写到数据表 CREATE INDEX用于在一个或多个列上创建索引 CREATE PROCEDURE创建存储过程 CREATE TABLE创建新数据表库 CREATE USER添加新的用户账号 CREATE VIEW创建一个或多个 表上的新视图 DELETE从 表中删除一">
 <meta property="og:type" content="article">
-<meta property="og:title" content="进程同步">
-<meta property="og:url" content="https://knightpanda.github.io/2020/11/09/os-1/index.html">
+<meta property="og:title" content="MySQL附录整理（语句与数据类型，保留字）">
+<meta property="og:url" content="https://knightpanda.github.io/2020/11/09/mysql7/index.html">
 <meta property="og:site_name" content="不木的番茄">
-<meta property="og:description" content="经典同步问题1.生产者-消费者问题 问题描述：   问题分析： 1）关系分析：生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互写作的关系，只有生产者生产之后，消费者才能消费，它们是同步关系 2）整理思路： 解决的是互斥和同步的PV操作 3） 信号量设置： 信号量mutex作为互斥信号量，用于控制互斥访问缓冲池，互斥信号量初始为1 ；信号量full用于记录当前缓冲池中满缓冲区">
+<meta property="og:description" content="MySQL附录整理（语句与数据类型，保留字）MySQL语句 ALTER TABLE  更新已存在的表的模式 COMMIT将事务处理写到数据表 CREATE INDEX用于在一个或多个列上创建索引 CREATE PROCEDURE创建存储过程 CREATE TABLE创建新数据表库 CREATE USER添加新的用户账号 CREATE VIEW创建一个或多个 表上的新视图 DELETE从 表中删除一">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091605966.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091713834.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091826516.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091941399.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091955656.png">
-<meta property="article:published_time" content="2020-11-09T15:58:20.000Z">
-<meta property="article:modified_time" content="2020-11-10T14:57:07.713Z">
+<meta property="article:published_time" content="2020-11-09T15:44:29.000Z">
+<meta property="article:modified_time" content="2020-11-09T15:44:57.529Z">
 <meta property="article:author" content="KnightPanda">
-<meta property="article:tag" content="OS">
+<meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091605966.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
