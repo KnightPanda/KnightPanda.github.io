@@ -9,21 +9,21 @@
 <meta name="description" content="经典同步问题1.生产者-消费者问题 问题描述：   问题分析： 1）关系分析：生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互写作的关系，只有生产者生产之后，消费者才能消费，它们是同步关系 2）整理思路： 解决的是互斥和同步的PV操作 3） 信号量设置： 信号量mutex作为互斥信号量，用于控制互斥访问缓冲池，互斥信号量初始为1 ；信号量full用于记录当前缓冲池中满缓冲区">
 <meta property="og:type" content="article">
 <meta property="og:title" content="进程同步">
-<meta property="og:url" content="https://knightpanda.github.io/2020/11/09/os-p1/index.html">
+<meta property="og:url" content="https://knightpanda.github.io/2020/11/09/os-1/index.html">
 <meta property="og:site_name" content="不木的番茄">
 <meta property="og:description" content="经典同步问题1.生产者-消费者问题 问题描述：   问题分析： 1）关系分析：生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互写作的关系，只有生产者生产之后，消费者才能消费，它们是同步关系 2）整理思路： 解决的是互斥和同步的PV操作 3） 信号量设置： 信号量mutex作为互斥信号量，用于控制互斥访问缓冲池，互斥信号量初始为1 ；信号量full用于记录当前缓冲池中满缓冲区">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-p1.assets/image-20201110091605966.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-p1.assets/image-20201110091713834.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-p1.assets/image-20201110091826516.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-p1.assets/image-20201110091941399.png">
-<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-p1.assets/image-20201110091955656.png">
+<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091605966.png">
+<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091713834.png">
+<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091826516.png">
+<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091941399.png">
+<meta property="og:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091955656.png">
 <meta property="article:published_time" content="2020-11-09T15:58:20.000Z">
-<meta property="article:modified_time" content="2020-11-10T11:35:05.403Z">
+<meta property="article:modified_time" content="2020-11-10T14:57:07.713Z">
 <meta property="article:author" content="KnightPanda">
 <meta property="article:tag" content="OS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="d:/study/Knightpanda/blog/source_posts/os-p1.assets/image-20201110091605966.png">
+<meta name="twitter:image" content="d:/study/Knightpanda/blog/source_posts/os-1.assets/image-20201110091605966.png">
 
 
 <link rel="icon" href="/img/avatar.jpg">
@@ -144,6 +144,14 @@
     
         
             
+            <li><div data-rel="操作系统">操作系统<small>(1)</small></div>
+                
+            </li>
+            
+        
+    
+        
+            
             <li><div data-rel="数据库">数据库<small>(8)</small></div>
                 
             </li>
@@ -153,14 +161,6 @@
         
             
             <li><div data-rel="杂">杂<small>(2)</small></div>
-                
-            </li>
-            
-        
-    
-        
-            
-            <li><div data-rel="操作系统">操作系统<small>(1)</small></div>
                 
             </li>
             
@@ -242,7 +242,7 @@
     <nav id="title-list-nav">
         
         <a  class="全部文章 操作系统 "
-           href="/2020/11/09/os-p1/"
+           href="/2020/11/09/os-1/"
            data-tag="OS"
            data-author="" >
             <span class="post-title" title="进程同步">进程同步</span>
@@ -346,7 +346,7 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-os-p1" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-os-1" class="article article-type-post" itemscope itemprop="blogPost">
     
         <h1 class="article-title">进程同步</h1>
     
@@ -373,7 +373,7 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-10 19:35:05'>2020-11-09 23:58</time>
+            发布时间 : <time class="date" title='最后更新: 2020-11-10 22:57:07'>2020-11-09 23:58</time>
         
     </div>
     <div class="article-meta">
@@ -505,15 +505,15 @@ daughter()
 </blockquote>
 <h2 id="2-读者写者问题"><a href="#2-读者写者问题" class="headerlink" title="2.读者写者问题"></a>2.读者写者问题</h2><blockquote>
 <p> 问题分析：</p>
-<p>1)关系分析</p>
-<p>读者和写者是互斥的，写者和写者也是互斥的</p>
-<p>2）整理思路</p>
-<p>写者和任何进程互斥，即信号量的PV操作即可解决</p>
-<p>关于读者，用一个计数器，判断当前是否 有读者读取文件，当有读者时，写者无法写文件，此时读者会一直占着文件。当没读者时，写者才可以文件。不同读者对计数器的访问应该是互斥的</p>
-<p>3）信号量设置</p>
-<p>count–当前读者的数量</p>
-<p>mutex 互斥信号量，保护count变量更新</p>
-<p>rw保证读者与写者之间的互斥</p>
+<p> 1)关系分析</p>
+<p> 读者和写者是互斥的，写者和写者也是互斥的</p>
+<p> 2）整理思路</p>
+<p> 写者和任何进程互斥，即信号量的PV操作即可解决</p>
+<p> 关于读者，用一个计数器，判断当前是否 有读者读取文件，当有读者时，写者无法写文件，此时读者会一直占着文件。当没读者时，写者才可以文件。不同读者对计数器的访问应该是互斥的</p>
+<p> 3）信号量设置</p>
+<p> count–当前读者的数量</p>
+<p> mutex 互斥信号量，保护count变量更新</p>
+<p> rw保证读者与写者之间的互斥</p>
 </blockquote>
 <pre><code class="c">int count=0;
 semaphore mutex=1;
@@ -595,11 +595,11 @@ reader()
 <p>哲学家右边筷子的编号为（i+1)%5</p>
 </blockquote>
 <p>当一个哲学家左右筷子都可用时才允许其抓起筷子</p>
-<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091605966.png" alt="image-20201110091605966"></p>
-<h2 id="4-吸烟问题"><a href="#4-吸烟问题" class="headerlink" title="4. 吸烟问题"></a>4. 吸烟问题</h2><p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091713834.png" alt="image-20201110091713834"></p>
-<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091826516.png" alt="image-20201110091826516"></p>
-<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091941399.png" alt="image-20201110091941399"></p>
-<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091955656.png" alt="image-20201110091955656"></p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-1.assets\image-20201110091605966.png" alt="image-20201110091605966"></p>
+<h2 id="4-吸烟问题"><a href="#4-吸烟问题" class="headerlink" title="4. 吸烟问题"></a>4. 吸烟问题</h2><p><img src="D:\study\Knightpanda\blog\source_posts\os-1.assets\image-20201110091713834.png" alt="image-20201110091713834"></p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-1.assets\image-20201110091826516.png" alt="image-20201110091826516"></p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-1.assets\image-20201110091941399.png" alt="image-20201110091941399"></p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-1.assets\image-20201110091955656.png" alt="image-20201110091955656"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至xuwenkai13@gmail.com </span>
