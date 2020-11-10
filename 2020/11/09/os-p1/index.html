@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>MySQL 数据库维护 | 不木的番茄</title>
-  <meta name="keywords" content=" MySQL ">
-  <meta name="description" content="MySQL 数据库维护 | 不木的番茄">
+  <title>进程同步 | 不木的番茄</title>
+  <meta name="keywords" content=" OS ">
+  <meta name="description" content="进程同步 | 不木的番茄">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="经典同步问题1.生产者-消费者问题 问题描述：   问题分析： 1）关系分析：生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互写作的关系，只有生产者生产之后，消费者才能消费，它们是同步关系 2）整理思路： 解决的是互斥和同步的PV操作 3） 信号量设置： 信号量mutex作为互斥信号量，用于控制互斥访问缓冲池，互斥信号量初始为1 ；信号量full用于记录当前缓冲池中满缓冲区">
 <meta property="og:type" content="article">
@@ -346,9 +346,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-mysql5" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-os-p1" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">MySQL 数据库维护</h1>
+        <h1 class="article-title">进程同步</h1>
     
     <div class="article-meta">
         
@@ -358,7 +358,7 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="数据库">数据库</a>
+            <a  data-rel="操作系统">操作系统</a>
             
         </span>
         
@@ -366,19 +366,19 @@
         <span class="tag">
             <i class="iconfont icon-tag"></i>
             
-            <a class="color1">MySQL</a>
+            <a class="color3">OS</a>
             
         </span>
         
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2020-11-09 23:43:46'>2020-11-09 23:43</time>
+            发布时间 : <time class="date" title='最后更新: 2020-11-10 19:35:05'>2020-11-09 23:58</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:1.1k</span>
+        <span>字数:1.3k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -397,7 +397,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#MySQL-%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%B4%E6%8A%A4"><span class="toc-text">MySQL 数据库维护</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E6%95%B0%E6%8D%AE"><span class="toc-text">备份数据</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9B%E8%A1%8C%E6%95%B0%E6%8D%AE%E5%BA%93%E7%BB%B4%E6%8A%A4"><span class="toc-text">进行数据库维护</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%AF%8A%E6%96%AD%E5%90%AF%E5%8A%A8%E9%97%AE%E9%A2%98"><span class="toc-text">诊断启动问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9F%A5%E7%9C%8B%E6%97%A5%E5%BF%97%E6%96%87%E4%BB%B6"><span class="toc-text">查看日志文件</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%BB%8F%E5%85%B8%E5%90%8C%E6%AD%A5%E9%97%AE%E9%A2%98"><span class="toc-text">经典同步问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-text">1.生产者-消费者问题</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%A4%8D%E6%9D%82%E7%9A%84%E7%94%9F%E4%BA%A7%E8%80%85-%E6%B6%88%E8%B4%B9%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-text">复杂的生产者-消费者问题</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%AF%BB%E8%80%85%E5%86%99%E8%80%85%E9%97%AE%E9%A2%98"><span class="toc-text">2.读者写者问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%93%B2%E5%AD%A6%E5%AE%B6%E8%BF%9B%E9%A4%90%E9%97%AE%E9%A2%98"><span class="toc-text">3.哲学家进餐问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%90%B8%E7%83%9F%E9%97%AE%E9%A2%98"><span class="toc-text">4. 吸烟问题</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -413,47 +413,193 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="MySQL-数据库维护"><a href="#MySQL-数据库维护" class="headerlink" title="MySQL 数据库维护"></a>MySQL 数据库维护</h1><blockquote>
-<p>本章学习如何进行常见的数据库维护。</p>
-<p>👩后面的几章还没有仔细学习过qwq..</p>
+        <h1 id="经典同步问题"><a href="#经典同步问题" class="headerlink" title="经典同步问题"></a>经典同步问题</h1><h2 id="1-生产者-消费者问题"><a href="#1-生产者-消费者问题" class="headerlink" title="1.生产者-消费者问题"></a>1.生产者-消费者问题</h2><blockquote>
+<p>问题描述：</p>
 </blockquote>
-<h2 id="备份数据"><a href="#备份数据" class="headerlink" title="备份数据"></a>备份数据</h2><p>像所有数据一样，MySQL的数据也必须经常备份。由于MySQL数据库是<strong>基于磁盘的文件</strong>，普通的备份系统和例程就能备份MySQL的数据。 但是，由于这些文件总是处于打开和使用状态，普通的文件副本备份不 一定总是有效</p>
-<p>可能的解决方案</p>
-<ul>
-<li> 使用命令行实用程序<code>mysqldump</code>转储所有数据库内容到某个外部文件。在进行常规备份前这个实用程序应该正常运行，以便能正确地备份转储文件</li>
-<li> 可用命令行实用程序<code>mysqlhotcopy</code>从一个数据库复制所有数据 （并非所有数据库引擎都支持这个实用程序）。</li>
-<li> 可以使用MySQL的<code>BACKUP TABLE</code>或<code>SELECT INTO OUTFILE</code>转储所有数据到某个外部文件。这两条语句都接受将要创建的系统文件 名，此系统文件必须不存在，否则会出错。数据可以用<code>RESTORE TABLE</code>来复原</li>
-</ul>
 <blockquote>
-<p>💡首先刷新未写数据 为了保证所有数据被写到磁盘（包括索引 数据），可能需要在进行备份前使用FLUSH TABLES语句</p>
+<p>问题分析：</p>
+<p>1）关系分析：生产者和消费者对缓冲区互斥访问是互斥关系，同时生产者和消费者又是一个相互写作的关系，只有生产者生产之后，消费者才能消费，它们是同步关系</p>
+<p>2）整理思路：</p>
+<p>解决的是互斥和同步的PV操作</p>
+<p>3） 信号量设置：</p>
+<p>信号量<code>mutex</code>作为互斥信号量，用于控制互斥访问缓冲池，互斥信号量初始为1 ；信号量<code>full</code>用于记录当前缓冲池中满缓冲区数量，初始为0，信号量<code>empty</code>记录空缓冲区数量初始为n  </p>
 </blockquote>
-<h2 id="进行数据库维护"><a href="#进行数据库维护" class="headerlink" title="进行数据库维护"></a>进行数据库维护</h2><p><code>ANALYZE TABLE</code>用来检查表键是否正确</p>
-<pre><code class="mysql">ANALYZE TABLE orders;</code></pre>
-<pre><code># Table, Op, Msg_type, Msg_text
-&#39;crashcourse.orders&#39;, &#39;analyze&#39;, &#39;status&#39;, &#39;OK&#39;
-</code></pre>
-<p><code>CHECK TABLE</code>用来针对许多问题对表进行检查。在<code>MyISAM</code>表上还对索引进行检查。<code>CHECK TABLE</code>支持一系列的用于<code>MyISAM</code>表的方式。 <code>CHANGED</code>检查自最后一次检查以来改动过的表。<code>EXTENDED</code>执行最 彻底的检查，<code>FAST</code>只检查未正常关闭的表，<code>MEDIUM</code>检查所有被删除的链接并进行键检验，<code>QUICK</code>只进行快速扫描。如下所示，CHECK TABLE发现和修复问题：</p>
-<pre><code class="mysql">CHECK TABLE orders ,orderitems;</code></pre>
-<pre><code># Table, Op, Msg_type, Msg_text
-&#39;crashcourse.orders&#39;, &#39;check&#39;, &#39;status&#39;, &#39;OK&#39;
-&#39;crashcourse.orderitems&#39;, &#39;check&#39;, &#39;status&#39;, &#39;OK&#39;
-</code></pre>
-<p>如果<code>MyISAM</code>表访问产生不正确和不一致的结果，可能需要用 <code>REPAIR TABLE</code>来修复相应的表。这条语句不应该经常使用，如果 需要经常使用，可能会有更大的问题要解决</p>
-<p>如果从一个表中删除大量数据，应该使用<code>OPTIMIZE TABLE</code>来收回所有的空间，从而优化表的性能</p>
-<h2 id="诊断启动问题"><a href="#诊断启动问题" class="headerlink" title="诊断启动问题"></a>诊断启动问题</h2><p>服务器启动问题通常在对MySQL配置或服务器本身进行更改时出现。MySQL在这个问题发生时报告错误，但由于多数MySQL服务器是作为系统进程或服务自动启动的，这些消息可能看不到。<br>在排除系统启动问题时，首先应该尽量用手动启动服务器。MySQL服务器自身通过在命令行上执行mysqld启动。下面是几个重要的mysqld 命令行选项：</p>
-<ul>
-<li>–help显示帮助——一个选项列表；</li>
-<li>–safe-mode装载减去某些最佳配置的服务器；</li>
-<li>–verbose显示全文本消息（为获得更详细的帮助消息与–help 联合使用）；</li>
-<li>–version显示版本信息然后退出</li>
-</ul>
-<h2 id="查看日志文件"><a href="#查看日志文件" class="headerlink" title="查看日志文件"></a>查看日志文件</h2><ul>
-<li>错误日志。它包含启动和关闭问题以及任意关键错误的细节。此日志通常名为hostname.err，位于data目录中。此日志名可用 –log-error命令行选项更改。</li>
-<li>查询日志。它记录所有MySQL活动，在诊断问题时非常有用。此 日志文件可能会很快地变得非常大，因此不应该长期使用它。此日志通常名为hostname.log，位于data目录中。此名字可以用 –log命令行选项更改。</li>
-<li>二进制日志。它记录更新过数据（或者可能更新过数据）的所有 语句。此日志通常名为hostname-bin，位于data目录内。此名字 可以用–log-bin命令行选项更改。注意，这个日志文件是MySQL5中添加的，以前的MySQL版本中使用的是更新日志。</li>
-<li>缓慢查询日志。顾名思义，此日志记录执行缓慢的任何查询。这 个日志在确定数据库何处需要优化很有用。此日志通常名为 hostname-slow.log ，位于 data 目录中。此名字可以用 –log-slow-queries命令行选项更改。 </li>
-<li>在使用日志时，可用FLUSH LOGS语句来刷新和重新开始所有日志文件</li>
-</ul>
+<pre><code class="c">semaphore mutex=1;//临界区互斥信号量 
+semaphore empty=n;//空闲缓冲区
+semaphore full=0;//缓冲区初始为空
+producer()&#123;
+    while(1)&#123;
+        produce an  item in nextp ;//生产数据
+        P(empty);//获得空缓冲区单元
+        P(mutex);//进入临界区去
+        add nextp to buffer;//将数据放入缓存区
+        V(mutex);//离开临界区，释放互斥信号量
+        V(full);//满缓冲区数+1
+    &#125;
+&#125;
+comsumer()
+&#123;
+    while(1)&#123;
+        P(full);//获取满缓冲区
+        P(mutex);//进入临界区 
+        remove an item from buffer //从临界区取出数据
+        V(mutex);//离开临界区释放资源
+        V(empty);//空缓冲区+1
+        consume the item //消费数据
+    &#125;
+&#125;</code></pre>
+<h3 id="复杂的生产者-消费者问题"><a href="#复杂的生产者-消费者问题" class="headerlink" title="复杂的生产者-消费者问题"></a>复杂的生产者-消费者问题</h3><blockquote>
+<p>问题分析：</p>
+<p>1)关系分析：</p>
+<p>爸爸妈妈是互斥惯性系，爸爸和女儿，妈妈和儿子是同步关系</p>
+<p>2)整理思路：</p>
+<p>两个生产者和两个消费者连接到大小为1的缓冲区上</p>
+<p>3）信号量设置：</p>
+<p><code>plate</code>设置为互斥信号量，表示是否允许向盘中放入水果，初始为1 表示允许放入，且只允许一个。</p>
+<p>信号量<code>apple</code>表示盘中是否有苹果</p>
+<p>同理<code>orange</code></p>
+</blockquote>
+<pre><code class="c">semaphore plate=1,apple=0,orange=0;
+dad()
+&#123;
+    while(1)
+    &#123;
+        prepare an apple ;
+        P(plate);//互斥向盘中取放水果
+        put an apple on the plate;
+        V(apple);//允许取苹果
+    &#125;
+&#125;
+mom()
+&#123;
+     while(1)
+    &#123;
+        prepare an orange ;
+        P(plate);//互斥向盘中取放水果
+        put an orange on the plate;
+        V(orange);//允许取..
+    &#125;
+&#125;
+son()
+&#123;
+    while(1)
+    &#123;
+        P(orange);
+        take an orange from the plate;
+        V(plate);
+        eat 
+    &#125;
+&#125;
+daughter()
+&#123;
+    while(1)
+    &#123;
+        P(apple);
+        take an apple from the plate;
+        V(plate);
+        eat 
+    &#125;
+&#125;</code></pre>
+<blockquote>
+<p>dad()和daughter()，mom()和son()必须连续执行，只能在女儿拿走苹果或儿子拿走橘子后才能释放盘子即<code>V(plate)</code>操作</p>
+</blockquote>
+<h2 id="2-读者写者问题"><a href="#2-读者写者问题" class="headerlink" title="2.读者写者问题"></a>2.读者写者问题</h2><blockquote>
+<p> 问题分析：</p>
+<p>1)关系分析</p>
+<p>读者和写者是互斥的，写者和写者也是互斥的</p>
+<p>2）整理思路</p>
+<p>写者和任何进程互斥，即信号量的PV操作即可解决</p>
+<p>关于读者，用一个计数器，判断当前是否 有读者读取文件，当有读者时，写者无法写文件，此时读者会一直占着文件。当没读者时，写者才可以文件。不同读者对计数器的访问应该是互斥的</p>
+<p>3）信号量设置</p>
+<p>count–当前读者的数量</p>
+<p>mutex 互斥信号量，保护count变量更新</p>
+<p>rw保证读者与写者之间的互斥</p>
+</blockquote>
+<pre><code class="c">int count=0;
+semaphore mutex=1;
+semaphore rw=1;
+witer()
+&#123;
+    while(1)
+    &#123;
+        P(rw);
+        write;
+        V(rw);
+    &#125;
+&#125;
+reader()
+&#123;
+    while(1)
+    &#123;
+        P(mutex);
+        if(count==0)//当第一个读进程读共享文件时
+            P(rw);
+        count++;//读者计数器+1
+        V(mutex);
+        read
+        P(mutex);
+        count--;
+        if(count==0)//当最后一个读进程读完共享文件时
+            V(rw);
+        V(mutex);
+    &#125;
+&#125;</code></pre>
+<p>写进程可能因为长时间等待饿死qwq</p>
+<p>若希望写进程优先，即当有读进程在读共享文件时，有写进程请求访问，这时应禁止后续的请求，等到已在共享文件的读进程执行完毕，立即让写进程执行，只有在无写进程执行的情况下才允许读进程再次允许</p>
+<p>为此，在上述程序基础上writer()和read()添加一对PV操作</p>
+<pre><code class="c">int count=0;//用来记录当前的读者数量
+semaphore mutex=1//保护更新count
+semaphore rw=1;//保证读者和写者互斥访问文件
+semaphore w=1;//写者优先
+writer()
+&#123;
+    while(1)
+    &#123;
+        P(w);//无写进程请求入内
+        P(rw);//互斥访问共享文件
+        writing;//写入
+        V(rw);//释放共享文件
+        V(w);//恢复
+    &#125;
+&#125;
+reader()
+&#123;
+    while(1)
+    &#123;
+        P(w);//在无写进程请求入内
+        P(mutex);
+        if(count==0)
+        &#123;
+            P(rw)
+        &#125;
+        count++;
+        V(mutex);
+        V(w);//!?!
+        reading
+        P(mutex);
+        count--;
+        if(count==0)
+            V(rw);
+        V(mutex);
+    &#125;
+&#125;</code></pre>
+<h2 id="3-哲学家进餐问题"><a href="#3-哲学家进餐问题" class="headerlink" title="3.哲学家进餐问题"></a>3.哲学家进餐问题</h2><blockquote>
+<p>问题分析：</p>
+<p>1）关系分析 5名哲学家和左右邻居对其中间的筷子的访问时互斥关系</p>
+<p>2）整理思路：</p>
+<p>3）信号量：</p>
+<p>互斥信号量数组 chopstick[5]={1,1,1,1,1}</p>
+<p>对5个筷子的互斥访问</p>
+<p>哲学家编号为0-4</p>
+<p>哲学家i左边的筷子编号为i</p>
+<p>哲学家右边筷子的编号为（i+1)%5</p>
+</blockquote>
+<p>当一个哲学家左右筷子都可用时才允许其抓起筷子</p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091605966.png" alt="image-20201110091605966"></p>
+<h2 id="4-吸烟问题"><a href="#4-吸烟问题" class="headerlink" title="4. 吸烟问题"></a>4. 吸烟问题</h2><p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091713834.png" alt="image-20201110091713834"></p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091826516.png" alt="image-20201110091826516"></p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091941399.png" alt="image-20201110091941399"></p>
+<p><img src="D:\study\Knightpanda\blog\source_posts\os-p1.assets\image-20201110091955656.png" alt="image-20201110091955656"></p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至xuwenkai13@gmail.com </span>
