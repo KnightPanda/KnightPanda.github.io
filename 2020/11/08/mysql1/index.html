@@ -26,15 +26,15 @@
     var CONFIG = {"hostname":"knightpanda.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":"true#false","bookmark":{"enable":true,"color":"#FF0099","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta name="description" content="MySQL 使用游标需要在检索出来的行中前进或者后退一行或者多行，就是使用游标的原因 游标cursor是一个存储在MySQL服务器上的数据库查询，他不是一条SELECT语句，而是被该语句检索出来的结果集 不同于大多数DBMS，MySQL游标只能用于存储过程（和函数）。 创建游标存储过程处理完成后，游标就消失了（局限于存储过程） 打开和关闭游标 隐含关闭，如果你不明确关闭游标，MySQL将在到达EN">
+  <meta name="description" content="见标题🎈">
 <meta property="og:type" content="article">
 <meta property="og:title" content="MySQL 使用游标">
 <meta property="og:url" content="https://knightpanda.github.io/2020/11/08/mysql1/index.html">
 <meta property="og:site_name" content="不木的番茄">
-<meta property="og:description" content="MySQL 使用游标需要在检索出来的行中前进或者后退一行或者多行，就是使用游标的原因 游标cursor是一个存储在MySQL服务器上的数据库查询，他不是一条SELECT语句，而是被该语句检索出来的结果集 不同于大多数DBMS，MySQL游标只能用于存储过程（和函数）。 创建游标存储过程处理完成后，游标就消失了（局限于存储过程） 打开和关闭游标 隐含关闭，如果你不明确关闭游标，MySQL将在到达EN">
+<meta property="og:description" content="见标题🎈">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2020-11-08T15:54:21.000Z">
-<meta property="article:modified_time" content="2020-11-08T15:55:12.781Z">
+<meta property="article:modified_time" content="2020-11-21T15:16:57.603Z">
 <meta property="article:author" content="KnightPanda">
 <meta property="article:tag" content="MySQL">
 <meta name="twitter:card" content="summary">
@@ -153,7 +153,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
 
   </li>
   </ul>
@@ -202,7 +202,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -291,10 +291,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">发表于</span>
-      
 
-      <time title="创建时间：2020-11-08 23:54:21 / 修改时间：23:55:12" itemprop="dateCreated datePublished" datetime="2020-11-08T23:54:21+08:00">2020-11-08</time>
+      <time title="创建时间：2020-11-08 23:54:21" itemprop="dateCreated datePublished" datetime="2020-11-08T23:54:21+08:00">2020-11-08</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2020-11-21 23:16:57" itemprop="dateModified" datetime="2020-11-21T23:16:57+08:00">2020-11-21</time>
+      </span>
     <span class="post-meta-item">
       <span class="post-meta-item-icon">
         <i class="far fa-folder"></i>
@@ -308,6 +314,7 @@
   
 </div>
 
+            <div class="post-description">见标题🎈</div>
         </div>
       </header>
 
