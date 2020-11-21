@@ -138,17 +138,17 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">4</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">6</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
 
-    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
 
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
 
   </li>
   </ul>
@@ -196,20 +196,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">13</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-categories">
             <a href="/categories/">
           
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">分类</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-count">6</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
@@ -253,6 +253,94 @@
       
 
       
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://knightpanda.github.io/2020/11/21/K-Means/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg#/images/avatar.gif">
+      <meta itemprop="name" content="KnightPanda">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不木的番茄">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/11/21/K-Means/" class="post-title-link" itemprop="url">K均值聚类算法</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+      
+
+      <time title="创建时间：2020-11-21 22:35:11 / 修改时间：22:41:04" itemprop="dateCreated datePublished" datetime="2020-11-21T22:35:11+08:00">2020-11-21</time>
+    </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E5%AE%9E%E6%88%98/" itemprop="url" rel="index"><span itemprop="name">机器学习实战</span></a>
+        </span>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <h1 id="K均值聚类算法"><a href="#K均值聚类算法" class="headerlink" title="K均值聚类算法"></a>K均值聚类算法</h1><p><strong>Clustering聚类</strong></p>
+<blockquote>
+<p>聚类是一种无监督学习，它将相似的对象归到同一个簇中，簇内的对象越相似，聚类效果越好，k-均值 <code>K-means</code>聚类算法，可以发现k个不同的簇每个簇的中心采用簇中所含值的均值计算</p>
+<p>聚类和分类的最大区别是，分类目标事先已知，而聚类则不一样，因为其产生的结果与分类相同，而是只是类别没有预先定义，聚类有时候被称为无监督分类<code>unsupervised classification</code></p>
+<p>聚类分析试图将相似对象归入同一簇，将不相似的对象归到不同簇</p>
+<p>相似取决于相似度计算方法</p>
+</blockquote>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2020/11/21/K-Means/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
     
 
 
@@ -1230,147 +1318,6 @@
 <p>在存储过程追踪创建一个新表用于存储结果</p>
 <p>具体描述如下：</p>
 <p><code>FETCH</code>像以前一样取每个<code>order_num</code>，然后<code>CALL</code>执行另一个存储过程计算每个订单的带税合计，最后保存每个订单的订单号和合计</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://knightpanda.github.io/2020/11/08/mysql/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.jpg#/images/avatar.gif">
-      <meta itemprop="name" content="KnightPanda">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="不木的番茄">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/11/08/mysql/" class="post-title-link" itemprop="url">MySQL使用触发器</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">发表于</span>
-
-      <time title="创建时间：2020-11-08 23:52:42" itemprop="dateCreated datePublished" datetime="2020-11-08T23:52:42+08:00">2020-11-08</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">更新于</span>
-        <time title="修改时间：2020-11-09 00:19:16" itemprop="dateModified" datetime="2020-11-09T00:19:16+08:00">2020-11-09</time>
-      </span>
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-folder"></i>
-      </span>
-      <span class="post-meta-item-text">分类于</span>
-        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-          <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a>
-        </span>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="MySQL使用触发器"><a href="#MySQL使用触发器" class="headerlink" title="MySQL使用触发器"></a>MySQL使用触发器</h1><p><strong>触发器</strong>是MySQL响应以下任意语句而自动执行的一条MySQL语句（或是位于BEGIN和END之间的一组语句）</p>
-<ul>
-<li>DELETE </li>
-<li>INSERT</li>
-<li>UPDATE</li>
-</ul>
-<p>(其他的MySQL语句不支持触发器)</p>
-<h2 id="创建触发器"><a href="#创建触发器" class="headerlink" title="创建触发器"></a>创建触发器</h2><p>需要以下四条信息</p>
-<ul>
-<li>唯一的触发器名</li>
-<li>触发器关联的表</li>
-<li>触发器响应的活动</li>
-<li>触发器何时执行（处理之前，处理之后）</li>
-</ul>
-<p>触发器名必须在每个表是唯一的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER newproduct AFTER INSERT ON products</span><br><span class="line">FOR EACH ROW SELECT &#39;product added&#39;;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_36162966/article/details/90025204">触发器创建失败的解决方法</a></p>
-<p>从MySQL5以后不支持触发器返回结果集，需要用一个变量接收结果集输出。改为以下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER newproduct AFTER INSERT ON products</span><br><span class="line">FOR EACH ROW SELECT &#39;product added&#39; INTO @p;</span><br></pre></td></tr></table></figure>
-
-<p><code>CREATE TRIGGER</code>创建一个名为<code>newproduct</code>的新的触发器，触发器将在<code>insert</code>成功执行后执行，</p>
-<p><em>触发器仅支持表，不支持视图，临时表</em></p>
-<p><em>每个表每个事件每次只允许一个触发器，所以每个表最多支持6个触发器（INSERT,DECLARE,DELETE前后）</em></p>
-<h2 id="删除触发器"><a href="#删除触发器" class="headerlink" title="删除触发器"></a>删除触发器</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DROP TRIGGER newproduct;</span><br></pre></td></tr></table></figure>
-
-
-
-<p><em>触发器不能更新或者覆盖，为了修改一个触发器，必须先删除它，然后重新创建</em></p>
-<h2 id="使用触发器"><a href="#使用触发器" class="headerlink" title="使用触发器"></a>使用触发器</h2><h3 id="1-INSERT触发器"><a href="#1-INSERT触发器" class="headerlink" title="1.INSERT触发器"></a>1.INSERT触发器</h3><ul>
-<li>在INSERT触发器代码内可引用一个名为NEW的虚拟表，访问被插入的行</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER neworder AFTER INSERT ON orders</span><br><span class="line">FOR EACH ROW SELECT NEW.order_num INTO @test_1;</span><br></pre></td></tr></table></figure>
-
-
-
-<p>在插入一个新订单号到orders表时，MySQL生成一个新订单号并保存在order_num中。触发器从NEW.order_num取得这个值并返回他。触发器每次总时返回新订单号。</p>
-<p>测试触发器 </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">INSERT INTO orders(order_date,cust_id)</span><br><span class="line">VALUES(NOW(),10001)</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>分析:orders包含3列，order_date,cust_id必须给出，order_num由MySQL自动生成</p>
-</blockquote>
-<h3 id="2-DELETE触发器"><a href="#2-DELETE触发器" class="headerlink" title="2.DELETE触发器"></a>2.DELETE触发器</h3><ul>
-<li>在DELETE触发器代码内，可以引用一个名为OLD的寻你表，访问被删除的行</li>
-<li>OLD的值全部为只读，不能更新</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"> DELIMITER &#x2F;&#x2F;</span><br><span class="line">CREATE TRIGGER deleteorder BEFORE DELETE ON orders</span><br><span class="line">FOR EACH ROW</span><br><span class="line">BEGIN</span><br><span class="line">	INSERT INTO archive_orders(order_name,order_date,cust_id)</span><br><span class="line">    VALUES(OLD.order_num,OLD.order_date,OLD.cust_id);</span><br><span class="line">END&#x2F;&#x2F;</span><br></pre></td></tr></table></figure>
-
-<p>在任意订单被删除前执行此触发器，使用INSERT语句将OLD中的值保存在一个存档表中</p>
-<p><em>使用BEFORE DELETE触发器的优点（相对AFTER DELETE触发器）如果由于某些原因，订单不能存档，DELETE本身将被放弃</em></p>
-<h3 id="3-UPDATE触发器"><a href="#3-UPDATE触发器" class="headerlink" title="3.UPDATE触发器"></a>3.UPDATE触发器</h3><ul>
-<li>在UPDATE触发器代码中，可以引用一个名为OLD的虚拟表访问以前的值，引用一个名为NEW的虚拟表访问更新的值</li>
-<li>在BEFORE UPDATE触发器中，NEW的值也可能被更新（允许更改将要用于UPDATE语句的值）</li>
-<li>OLD值为可读，不能更改</li>
-</ul>
-<p>保证州名缩写总是大写</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">create trigger updatevendor before update on vendors</span><br><span class="line">for each row set NEW.vend_state &#x3D;Upper(NEW.vend_state);</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
