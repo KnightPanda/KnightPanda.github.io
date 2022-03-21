@@ -26,16 +26,20 @@
     var CONFIG = {"hostname":"knightpanda.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.0.2","exturl":false,"sidebar":{"position":"right","display":"hide","padding":18,"offset":12},"copycode":"true#false","bookmark":{"enable":true,"color":"#FF0099","save":"manual"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
   </script>
 
-  <meta property="og:type" content="website">
+  <meta name="description" content="title: 深度学习（二）date:categories: 深度学习tags:description:  模型，损失函数，优化器 深度学习（二）定义模型，损失函数，优化器定义模型，损失函数和优化器 模型   $$\sigma(\boldsymbol{W}x+b)$$  其中$ \sigma$ 是一个非线性函数 – 线性函数的模拟能力很弱，单纯的叠加结果仍然是线性函数，所以需要激活函数，让卷积层的">
+<meta property="og:type" content="article">
 <meta property="og:title" content="不木的番茄">
-<meta property="og:url" content="https://knightpanda.github.io/archives/2020/11/page/2/index.html">
+<meta property="og:url" content="https://knightpanda.github.io/2022/03/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/index.html">
 <meta property="og:site_name" content="不木的番茄">
+<meta property="og:description" content="title: 深度学习（二）date:categories: 深度学习tags:description:  模型，损失函数，优化器 深度学习（二）定义模型，损失函数，优化器定义模型，损失函数和优化器 模型   $$\sigma(\boldsymbol{W}x+b)$$  其中$ \sigma$ 是一个非线性函数 – 线性函数的模拟能力很弱，单纯的叠加结果仍然是线性函数，所以需要激活函数，让卷积层的">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-03-21T14:43:55.087Z">
+<meta property="article:modified_time" content="2022-03-21T14:46:10.699Z">
 <meta property="article:author" content="KnightPanda">
 <meta name="twitter:card" content="summary">
 
 
-<link rel="canonical" href="https://knightpanda.github.io/archives/2020/11/page/2/">
+<link rel="canonical" href="https://knightpanda.github.io/2022/03/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/">
 
 
 <script class="page-configurations">
@@ -43,12 +47,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | 不木的番茄</title>
+  <title> | 不木的番茄</title>
   
 
 
@@ -168,7 +172,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           文章目录
@@ -181,6 +185,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <section class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%EF%BC%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%EF%BC%8C%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">1.</span> <span class="nav-text">深度学习（二）定义模型，损失函数，优化器</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E6%A8%A1%E5%9E%8B%EF%BC%8C%E6%8D%9F%E5%A4%B1%E5%87%BD%E6%95%B0%E5%92%8C%E4%BC%98%E5%8C%96%E5%99%A8"><span class="nav-number">1.1.</span> <span class="nav-text">定义模型，损失函数和优化器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AE%AD%E7%BB%83%E6%A8%A1%E5%9E%8B"><span class="nav-number">1.2.</span> <span class="nav-text">训练模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%BF%E7%94%A8pytorch%E5%AE%9A%E4%B9%89%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84"><span class="nav-number">1.3.</span> <span class="nav-text">使用pytorch定义神经网络结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%A5%9E%E7%BB%8F%E7%BD%91%E7%BB%9C%E8%B0%83%E4%BC%98"><span class="nav-number">1.4.</span> <span class="nav-text">神经网络调优</span></a></li></ol></li></ol></div>
         </section>
         <!--/noindex-->
 
@@ -249,96 +254,165 @@
 </noscript>
 
 
-    <div class="main-inner archive posts-collapse">
+    <div class="main-inner post posts-expand">
       
 
       
 
   
-  
-  
-  <div class="post-block">
-    <div class="post-content">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 16 篇日志。 继续努力。</span>
-      </div>
 
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://knightpanda.github.io/2022/03/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%BA%8C%EF%BC%89/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg#/images/avatar.gif">
+      <meta itemprop="name" content="KnightPanda">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="不木的番茄">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
+
+      <time title="创建时间：2022-03-21 22:43:55 / 修改时间：22:46:10" itemprop="dateCreated datePublished" datetime="2022-03-21T22:43:55+08:00">2022-03-21</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <p>title: 深度学习（二）<br>date:<br>categories: 深度学习<br>tags:<br>description:  模型，损失函数，优化器</p>
+<h1 id="深度学习（二）定义模型，损失函数，优化器"><a href="#深度学习（二）定义模型，损失函数，优化器" class="headerlink" title="深度学习（二）定义模型，损失函数，优化器"></a>深度学习（二）定义模型，损失函数，优化器</h1><h2 id="定义模型，损失函数和优化器"><a href="#定义模型，损失函数和优化器" class="headerlink" title="定义模型，损失函数和优化器"></a>定义模型，损失函数和优化器</h2><ul>
+<li><p>模型 </p>
+<ul>
+<li><p>$$<br>\sigma(\boldsymbol{W}x+b)<br>$$</p>
+</li>
+<li><p>其中$ \sigma$ 是一个非线性函数 – 线性函数的模拟能力很弱，单纯的叠加结果仍然是线性函数，所以需要激活函数，让卷积层的深度更有意义  $tanh$ ,$ReLU$</p>
+</li>
+</ul>
+</li>
+<li><p>损失函数</p>
+<ul>
+<li>模型输出值和真实值之间的差距</li>
+</ul>
+</li>
+<li><p>优化器</p>
+<ul>
+<li>更新参数的策略 ，最简单的优化器–随机梯度下降</li>
+</ul>
+</li>
+</ul>
+<h2 id="训练模型"><a href="#训练模型" class="headerlink" title="训练模型"></a>训练模型</h2><p>目的 调整模型的参数，使得Loss最小</p>
+<p>梯度下降方法 – 求Loss对W和b的梯度，以找到Loss最快下降方向<br>$$<br>x’=x- \eta \ y’(x)<br>$$<br>其中 $\eta$ 为学习率 – 更新步长的正标量</p>
+<h2 id="使用pytorch定义神经网络结构"><a href="#使用pytorch定义神经网络结构" class="headerlink" title="使用pytorch定义神经网络结构"></a>使用pytorch定义神经网络结构</h2><ol>
+<li>自动微分</li>
+<li>线性模型<ol>
+<li><code>torch.nn.Linear(input_size,output_size)</code></li>
+<li>权重<code>linear_layer.weight</code> ；偏置<code>linear_layer.bias</code></li>
+<li>在深度学习中，单层的线性模型也被称为全连接层 <code>FC fully connected layers</code> </li>
+</ol>
+</li>
+<li>损失函数和优化器<ol>
+<li><code>torch.nn.MSELoss()</code>==常用于回归任务== 结果是一个值</li>
+<li><code>torch.nn.CrossEntroyLoss()</code>==常用于分类任务== 结果是一个类别</li>
+<li>$\eta$ 决定更新的幅度 ，太小会导致训练速度缓慢，太大会导致模型在最低点左右横跳无法收敛– $\eta$不应该是一个定值，前期取值大可以加速训练，然后随着迭代的次数增加而减小</li>
+<li>尽量避免模型停留在局部最低 – 人们让参数更新有了惯性，即便梯度为0，也会继续往前滑一段</li>
+<li>常用的优化器<ol>
+<li><code>torch.optim.Adam</code> 自适应学习率优化器 – 学习率通常大</li>
+<li><code>torch.optim.SGD</code> 随机梯度优化器 – 学习率通常小</li>
+<li><code>optimizer.zero_grad()</code>清空上一轮梯度 -&gt; <code>loss.backward()</code> 计算梯度 -&gt;<code>optimizer.step()</code>优化参数</li>
+</ol>
+</li>
+</ol>
+</li>
+<li>超参数 <code>hyper Parameter</code> <ol>
+<li>和需要训练的参数区别</li>
+<li>学习率 网络各层维度 训练次数 </li>
+</ol>
+</li>
+<li>构建全连接神经网络 <ol>
+<li>定义网络结构 在<code>__init()__</code>中定义需要使用的层，在<code>forward()</code>方法中计算网络输出</li>
+<li>实例化网络 – 可调用对象</li>
+<li>调用可调用对象</li>
+<li>😁 图片的维度 【高，宽，通道】；pytorch要求图片的张量为【通道，高，宽】，需要<code>torchvision.transforms.ToTensor()</code> </li>
+<li>网络识别图片中的数字通常不会输出0<del>9 ，因为0</del>9只是类别不同，但是数字有大小之分；一般输出一个10维向量，每一维度上的数字表示模型认为是该类别的可能性<ol>
+<li><code>_,predicted = torch.max(outputs,1)</code>  <code>torch.max</code>返回的第一个是最大值 使用无意义变量接收；第二个返回值是最大值所在的位置 使用<code>predicted</code>接收</li>
+</ol>
+</li>
+</ol>
+</li>
+</ol>
+<h2 id="神经网络调优"><a href="#神经网络调优" class="headerlink" title="神经网络调优"></a>神经网络调优</h2><ul>
+<li>数据与模型规模匹配<ul>
+<li>数据过少 模型巨大–过拟合</li>
+<li>数据多 小规模模型 – 欠拟合</li>
+</ul>
+</li>
+<li>特征缩放<ul>
+<li>通常表示像素时使用0-255 ，但在深度学习领域常归到 -1-1 或者 0-1 附近，可以明显提高模型的收敛速度</li>
+<li>归一化   $ x’ = \frac{x-min(x)} {max(x)-min(x)}$</li>
+<li>标准化  $x’=\frac{x-\bar x }{\sigma}$ ($\bar x$ 平均值，$\sigma$标准差)</li>
+</ul>
+</li>
+<li>数据集<ul>
+<li>如果要标明图片中的物体坐标，则需要增加输出的值，由形式上一维[classIndex] 变成 五维[ClassIndex,x,y,h,w] 。同样采用梯度下降法训练 。这样模型便可以学会图片的物体是什么以及坐标 长宽</li>
+<li>但事实上 我们不是只改变网络输出层就可以得到我们想要的效果。==关键在于我们需要有对应的数据集，模型要学会找到物体的位置，我们的数据中就需要人工标注种类以及位置==</li>
+</ul>
+</li>
+</ul>
+
     </div>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-11-08T23:54:21+08:00"
-              content="2020-11-08">
-          11-08
-        </time>
-      </div>
+    
+    
+    
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/08/mysql1/" itemprop="url">
-            <span itemprop="name">MySQL 使用游标</span>
-          </a>
-      </div>
+    <footer class="post-footer">
 
-      
-    </header>
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2020/11/22/PAT/" rel="prev" title="PAT记录">
+                  <i class="fa fa-chevron-left"></i> PAT记录
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/2022/03/21/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%EF%BC%88%E4%B8%89%EF%BC%89/" rel="next" title="深度学习（三）">
+                  深度学习（三） <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
   </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-11-08T23:52:42+08:00"
-              content="2020-11-08">
-          11-08
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/08/mysql/" itemprop="url">
-            <span itemprop="name">MySQL使用触发器</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-      <div class="post-meta-container">
-        <time itemprop="dateCreated"
-              datetime="2020-11-06T21:46:42+08:00"
-              content="2020-11-06">
-          11-06
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/11/06/hello-world/" itemprop="url">
-            <span itemprop="name">Hello World</span>
-          </a>
-      </div>
-
-      
-    </header>
-  </article>
+</div>
 
 
-    </div>
-  </div>
-  
-  
-  
 
-  
-  <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/archives/2020/11/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/archives/2020/11/">1</a><span class="page-number current">2</span>
-  </nav>
 
 
 
